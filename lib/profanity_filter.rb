@@ -35,12 +35,10 @@ module ProfanityFilter
   class Base
     cattr_accessor :replacement_text, :dictionary_file, :dictionary
     @@replacement_text = '@#$%'
-    
-    @@dictionary_file = "#{Rails.root}/config/dictionary.yml"
 
     class << self
       def dictionary
-        @@dictionary ||= YAML.load_file(@@dictionary_file)
+        @@dictionary ||= YAML.load_file(Rails.root.join("config/dictionary.yml"))
       end
       
       def banned?(word = '')
