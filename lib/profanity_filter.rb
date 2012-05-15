@@ -35,12 +35,8 @@ module ProfanityFilter
   class Base
     cattr_accessor :replacement_text, :dictionary_file, :dictionary
     @@replacement_text = '@#$%'
-    if File.exists? "#{Rails.root}/config/dictionary.yml"
-      @@dictionary_file = "#{Rails.root}/config/dictionary.yml"
-      puts "Using custom dictionary"
-    else
-      @@dictionary_file  = File.join(File.dirname(__FILE__), '../config/dictionary.yml')
-    end
+    
+    @@dictionary_file = "#{Rails.root}/config/dictionary.yml"
 
     class << self
       def dictionary
